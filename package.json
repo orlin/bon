@@ -1,0 +1,25 @@
+{ "name": "bon"
+, "description": "bash on node"
+, "keywords": [ "bash", "cli" ]
+, "version": "0.0.1"
+, "repository":
+  { "type": "git"
+  , "url": "git://github.com/orlin/bon.git"
+  }
+, "bugs":
+  { "mail": "om@soundsapiens.com"
+  , "url" : "https://github.com/orlin/bon/issues"
+  }
+, "author": "Orlin M Bozhinov <om@soundsapiens.com>"
+, "contributors": []
+, "dependencies": {}
+, "devDependencies": {}
+, "bin": { "bon" : "./bon.sh" }
+, "scripts": {}
+, "engines" : { "node" : "0.10.x" }
+, "licenses":
+  [ { "type": "Unlicense"
+    , "url" : "http://unlicense.org"
+    }
+  ]
+}
