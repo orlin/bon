@@ -24,6 +24,23 @@ I use `commander` and thus assume `--help` is available, appending to it in
 a way that matches [commander](https://github.com/visionmedia/commander.js)'s
 formatting style.
 
+
+### Install
+
+In order to run your commands from anywhere, install `bon` globally with
+`npm install bon -g`.  If you want to make this automatic,
+add the following to `package.json`:
+
+```js
+"scripts": {
+  "preinstall": "npm i -g bon"
+}
+```
+
+Bon depends on `coffee-script`.  If you rather not have that installed globally
+as well, you'd have to add bon as a dependency so that `coffee` can be found.
+
+
 ### Convention
 
 Naming the script command the same as its module name is expected as default.
@@ -38,6 +55,7 @@ If CoffeeScript is preferred, just put the following code in it:
 require('coffee-script/register')
 require('./clier.coffee')
 ```
+
 
 ### Configuration
 
@@ -60,7 +78,7 @@ BON_NAME="clier" # must match module's name
 BON_EXT="coffee" # $BON_SCRIPT would be "./bin/clier.coffee"
 BON_SCRIPT="./bin/cli.coffee" #any path - ignoring BON_NAME and BON_EXT
 
-source node_modules/.bin/bon $*
+source bon "$@" # provided bon is installed globally
 ```
 
 
