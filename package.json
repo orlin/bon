@@ -1,6 +1,6 @@
 { "name": "bon"
 , "description": "bash on node"
-, "keywords": [ "bash", "cli" ]
+, "keywords": [ "bash", "meta", "cli" ]
 , "version": "0.0.1"
 , "repository":
   { "type": "git"
@@ -12,11 +12,11 @@
   }
 , "author": "Orlin M Bozhinov <om@soundsapiens.com>"
 , "contributors": []
-, "dependencies": {}
+, "dependencies": { "coffee-script": "*" }
 , "devDependencies": {}
 , "bin": { "bon" : "./bon.sh" }
 , "scripts": {}
-, "engines" : { "node" : "0.10.x" }
+, "engines" : { "node" : "*" }
 , "licenses":
   [ { "type": "Unlicense"
     , "url" : "http://unlicense.org"

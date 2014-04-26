@@ -10,6 +10,7 @@ base=$(basename "${0##*/}") # ${BASH_SOURCE[0]} would always be $bon
 name=${BON_NAME:-$base} # of the node package that is using bon
 script="./bin/$name.${BON_EXT:-js}" # relative to the $name package
 [ -n "${BON_SCRIPT}" ] && script="${BON_SCRIPT}" # override entirely
+PATH="./node_modules/bon/node_modules/.bin:$PATH" # depend on coffee
 
 # Exits if a newline is found - a trailing \n is ok.
 oneline() {
