@@ -12,7 +12,7 @@
   }
 , "author": "Orlin M Bozhinov <om@soundsapiens.com>"
 , "contributors": []
-, "dependencies": {}
+, "dependencies": { "coffee-script": "*" }
 , "devDependencies": {}
 , "bin": { "bon" : "./bon.sh" }
 , "scripts": {}
