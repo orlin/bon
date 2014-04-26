@@ -1,6 +1,7 @@
 # bon -- bash on node
 
-This is a bash script that helps run node.js or any scripts.
+This is a bash script that helps run node.js or any other scripts.
+
 
 ## Why
 
@@ -22,6 +23,45 @@ Being packaged as a module itself helps with making it a dependency.
 I use `commander` and thus assume `--help` is available, appending to it in
 a way that matches [commander](https://github.com/visionmedia/commander.js)'s
 formatting style.
+
+### Convention
+
+Naming the script command the same as its module name is expected as default.
+Suppose your module is called `clier`, the entry in `package.json` should be
+`"bin": { "clier" : "./node_modules/.bin/bon" }`, which looks for
+`bin/clier.js`.  JavaScript is the default language, making the majority happy.
+If CoffeeScript is preferred, just put the following code in it:
+
+```js
+#!/usr/bin/env node
+
+require('coffee-script/register')
+require('./clier.coffee')
+```
+
+### Configuration
+
+There are config vars that override `bon`'s defaults.
+If bon is exclusively paired with a single node script,
+exporting them to the shell environment is fine,
+certainly fine to first try it this way.
+
+The easier option for serious work is to have the vars set with the aid of
+`bin/bonvars.sh` - bon will source it, making available whatever is `export`ed.
+
+To customize anything, including all the paths / file names, refer to your own
+script in `package.json` - e.g. `"bin": { "clirest" : "./bin/clier.sh" }`, and
+source bon with it.  Here is some example code:
+
+```bash
+#!/bin/bash
+
+BON_NAME="clier" # must match module's name
+BON_EXT="coffee" # $BON_SCRIPT would be "./bin/clier.coffee"
+BON_SCRIPT="./bin/cli.coffee" #any path - ignoring BON_NAME and BON_EXT
+
+source node_modules/.bin/bon $*
+```
 
 
 ## LICENSE
