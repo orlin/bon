@@ -37,7 +37,8 @@ add the following to `package.json`:
 }
 ```
 
-Of-course, your bon-enabled module should also be installed globally.
+Of-course, your bon-enabled module should also be installed globally
+so that its cli scripts can be found on the $PATH.
 
 Bon depends on `coffee-script`.  If you rather not have that installed globally
 as well, you'd have to add bon as a dependency so that `coffee` can be found.
@@ -88,16 +89,16 @@ source bon "$@" # provided bon is installed globally
 
 ### Path Check
 
-By default bon checks if it changed directory the right place.  It assumes
-there is a `package.json` with its `name` matching `$BON_NAME`.
+By default bon checks if it changed directory to the right place.
+It assumes there is a `package.json` with its `name` matching `$BON_NAME`.
 
 Perhaps your script is not a node.js one.  Check any `$BON_CHECK_FILE`,
 perhaps set to "README.md", and provide a `$BON_CHECK_GREP`
 text or regex to match / verify with.
 
 If you choose to trust where bon takes you to,
-or else if your script is location-independent,
-set `BON_CHECK="no"` and the check will be skipped.
+or else if your script is location-independent - then
+set `BON_CHECK="no"`, and the path check will be skipped.
 
 
 ### Meta Commands
@@ -105,11 +106,13 @@ set `BON_CHECK="no"` and the check will be skipped.
 This was the reason bon was created to begin with.
 Set `$BON_EVALIST` to a list of space-separated commands.
 These are commands that generate commands to to be `eval`led.
-The `$BON_EVALIST` perhaps could be shared among scripts with `export`,
+The `$BON_EVALIST` perhaps could be shared among scripts via global `export`,
 thus it would be possible to skip configuration in favor of convention.
 
 The generated commands are verified to be *one line* long.
 This is to prevent accidental errors that may cause damage.
+A trailing `\n` is ok, even several trailing newlines are ok -
+bash simply ignores it as a feature.
 
 To develop commands with the target script, and skip the eval, run
 `daps line <evalgen> ...` where `<evalgen>` is a meta-command that is
