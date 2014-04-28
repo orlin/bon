@@ -39,10 +39,10 @@ include () {
 
 
 # Go to the right path - this is verified further down.
-path=$(coffee -e '\
+path=$(coffee -e "\
 process.stdout.write (\
-  if process.env.NODE_PATH is undefined then "."\
-  else process.env.NODE_PATH.split(":")[0] + "/$name")'
+  if process.env.NODE_PATH is undefined then '.'\
+  else process.env.NODE_PATH.split(':')[0] + '/$name')"
 )
 cd $path
 
