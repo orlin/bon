@@ -101,7 +101,7 @@ elif [[ $1 == "line" ]]; then
     echo "$line" # the command to be
   fi
 
-elif contains "$evalist" $1 ; then
+elif contains "$evalist" "$1" ; then
   # `$script <command> ...` writes a string to stdout - to eval
   command=$($script "$@")
   oneline "$command" "$@"
