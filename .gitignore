@@ -7,6 +7,7 @@
 ._*
 *.swp
 tmp
+bats
 
 # Node
 node_modules

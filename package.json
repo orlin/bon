@@ -15,7 +15,10 @@
 , "dependencies": { "coffee-script": "*" }
 , "devDependencies": {}
 , "bin": { "bon" : "./bon.sh" }
-, "scripts": {}
+, "scripts":
+  { "preinstall": "rm -rf bats"
+  , "postinstall": "git clone https://github.com/sstephenson/bats.git"
+  , "test": "bats/bin/bats -t test" }
 , "engines" : { "node" : "*" }
 , "licenses":
   [ { "type": "Unlicense"
