@@ -27,7 +27,7 @@ oneline() {
 # Determine if a list $1 contains an item $2.
 contains() {
   for word in $1; do
-    [[ $word = $2 ]] && return 0 # = true
+    [[ $word = "$2" ]] && return 0 # = true
   done
   return 1 # = false
 }
@@ -55,7 +55,7 @@ else
     if [ -z "$BON_CHECK_GREP" ]; then
       package=$(coffee -e "process.stdout.write \
         require('$path/package.json').name")
-      if [[ $name == $package ]]; then
+      if [[ $name == "$package" ]]; then
         path_ok="yes"
       fi
     elif grep -q "$BON_CHECK_GREP" "$path/$BON_CHECK_FILE"; then
@@ -67,7 +67,7 @@ fi
 # The moment of $path_ok truth.
 if [[ "$path_ok" == "yes" ]]; then
     # If this was run via $bon, provide an easy way to load more vars.
-    [[ $base == $bon ]] && include ./bin/bonvars.sh
+    [[ $base == "$bon" ]] && include ./bin/bonvars.sh
 
     # Space-separated list of commands that produce commands to eval.
     # Be careful what goes here - running arbitrary strings can be bad!
