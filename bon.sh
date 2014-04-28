@@ -44,7 +44,7 @@ process.stdout.write (\
   if process.env.NODE_PATH is undefined then '.'\
   else process.env.NODE_PATH.split(':')[0] + '/$name')"
 )
-cd $path
+cd "$path"
 
 # Make sure we are in the right place, or don't run anything.
 if [[ "$BON_CHECK" == "no" ]]; then
@@ -58,7 +58,7 @@ else
       if [[ $name == $package ]]; then
         path_ok="yes"
       fi
-    elif grep -q $BON_CHECK_GREP "$path/$BON_CHECK_FILE"; then
+    elif grep -q "$BON_CHECK_GREP" "$path/$BON_CHECK_FILE"; then
       path_ok="yes"
     fi
   fi
@@ -98,14 +98,14 @@ elif [[ $1 == "line" ]]; then
   shift # removes line from the argv
   line=$($script "$@")
   if oneline "$line" "$@" ; then
-    echo $line # the command to be
+    echo "$line" # the command to be
   fi
 
 elif contains "$evalist" $1 ; then
   # `$script <command> ...` writes a string to stdout - to eval
   command=$($script "$@")
   oneline "$command" "$@"
-  eval $command
+  eval "$command"
 
 else
   # delegate the rest
