@@ -96,18 +96,18 @@ if [[ $1 == "" || $1 == "help" || $help == "show" ]]; then
 elif [[ $1 == "line" ]]; then
   # use it to dev commands with (before adding them to the $evalist)
   shift # removes line from the argv
-  line=$($script $*)
-  if oneline "$line" "$*" ; then
+  line=$($script "$@")
+  if oneline "$line" "$@" ; then
     echo $line # the command to be
   fi
 
 elif contains "$evalist" $1 ; then
   # `$script <command> ...` writes a string to stdout - to eval
-  command=$($script $*)
-  oneline "$command" "$*"
+  command=$($script "$@")
+  oneline "$command" "$@"
   eval $command
 
 else
   # delegate the rest
-  $script $*
+  $script "$@"
 fi
