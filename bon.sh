@@ -12,6 +12,17 @@ script="./bin/$name.${BON_EXT:-js}" # relative to the $name package
 [ -n "${BON_SCRIPT}" ] && script="${BON_SCRIPT}" # override entirely
 PATH="./node_modules/bon/node_modules/.bin:$PATH" # depend on coffee
 
+# Cannot do anything withhout a $script to run.
+if [[ ! -x "$script" ]]; then
+  if [[ $script == "./bin/bon.js" ]]; then
+    # usually means that nothing has been implemented
+    echo "bon needs target implementation"
+  else
+    echo "script '$script' not found"
+  fi
+  exit 1
+fi
+
 # Exits if a newline is found - a trailing \n is ok.
 oneline() {
   if [[ $1 == *$'\n'* ]]; then
