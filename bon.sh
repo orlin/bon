@@ -4,14 +4,8 @@
 # The few extras are location-independence, automated meta-command eval,
 # a small safety mechanism, and a `$script line ...` - for cli dev.
 
-# Variables, with assumptions...
-bon="bon" # the command of the bon script - matching package.json
-base=$(basename "${0##*/}") # ${BASH_SOURCE[0]} would always be $bon
-name=${BON_NAME:-$base} # of the node package that is using bon
-script="./bin/$name.${BON_EXT:-js}" # relative to the $name package
-[ -n "${BON_SCRIPT}" ] && script="${BON_SCRIPT}" # override entirely
-PATH="./node_modules/bon/node_modules/.bin:$PATH" # depend on coffee
 
+# HELPERS:
 
 # Exits if a newline is found - a trailing \n is ok.
 oneline() {
@@ -38,6 +32,16 @@ include () {
   [[ -f "$1" ]] && source "$1"
 }
 
+
+# SETUP:
+
+# Variables, with assumptions...
+bon="bon" # the command of the bon script - matching package.json
+base=$(basename "${0##*/}") # ${BASH_SOURCE[0]} would always be $bon
+name=${BON_NAME:-$base} # of the node package that is using bon
+script="./bin/$name.${BON_EXT:-js}" # relative to the $name package
+[ -n "${BON_SCRIPT}" ] && script="${BON_SCRIPT}" # override entirely
+PATH="./node_modules/bon/node_modules/.bin:$PATH" # depend on coffee
 
 # Go to the right path - this is verified further down.
 path=$(coffee -e "\
@@ -94,7 +98,7 @@ if [[ ! -x "$script" ]]; then
 fi
 
 
-# The sequence of if and elifs is not arbitrary - so don't rearrange!
+# RUN: The sequence of if and elifs is not arbitrary - so don't rearrange!
 
 if [[ $1 == "" || $1 == "help" || $help == "error" ]]; then
   # help comes first
