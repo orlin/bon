@@ -2,6 +2,8 @@
 
 This is a bash script that helps run node.js or any other scripts.
 
+[![NPM](https://nodei.co/npm/bon.png?compact=true)](https://www.npmjs.org/package/bon)
+
 
 ## Why
 
