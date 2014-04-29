@@ -122,7 +122,7 @@ being developed and `...` are any optional args it may take.
 ## Test
 
 [Bats](https://github.com/sstephenson/bats) is used for testing.
-Run `npm bats` once for `npm test` to work.
+Do `npm run bats` once for `npm test` to work.
 
 
 ## LICENSE
