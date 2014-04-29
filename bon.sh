@@ -12,16 +12,6 @@ script="./bin/$name.${BON_EXT:-js}" # relative to the $name package
 [ -n "${BON_SCRIPT}" ] && script="${BON_SCRIPT}" # override entirely
 PATH="./node_modules/bon/node_modules/.bin:$PATH" # depend on coffee
 
-# Cannot do anything withhout a $script to run.
-if [[ ! -x "$script" ]]; then
-  if [[ $script == "./bin/bon.js" ]]; then
-    # usually means that nothing has been implemented
-    echo "bon needs target implementation"
-  else
-    echo "script '$script' not found"
-  fi
-  exit 1
-fi
 
 # Exits if a newline is found - a trailing \n is ok.
 oneline() {
@@ -87,22 +77,40 @@ if [[ "$path_ok" == "yes" ]]; then
 else
   echo
   echo "This '$path' path is not the root directory of $name."
+  help="error"
+fi
+
+# Cannot do anything withhout a $script to run - except echo more help -
+# check this far down because it may depend on $path or *bonvars*.
+if [[ ! -x "$script" ]]; then
   echo
-  help="show"
+  if [[ $script == "./bin/bon.js" ]]; then
+    # usually means that nothing has been implemented
+    echo "Bon needs target implementation."
+  else
+    echo "Script '$script' not found."
+  fi
+  help="error"
 fi
 
 
 # The sequence of if and elifs is not arbitrary - so don't rearrange!
 
-if [[ $1 == "" || $1 == "help" || $help == "show" ]]; then
-  # help comes first, starting with that of the $script
-  [[ "$path_ok" == "yes" ]] && $script --help
+if [[ $1 == "" || $1 == "help" || $help == "error" ]]; then
+  # help comes first
+  if [[ $help == "error" ]]; then
+    echo # vertical spacing follows prior messages
+  else
+    # show $script help only if there was no error and the script can be run
+    [[ -x "$script" ]] && $script --help
+  fi
   # help specific to bon, formatted to match `commander`'s style
   echo "  Configuration:"
   echo
   echo "    Set \$NODE_PATH to run $name from anywhere,"
   echo "    given that $name is a node module / script."
   echo
+  [[ $help == "error" ]] && exit 1
 
 elif [[ $1 == "line" ]]; then
   # use it to dev commands with (before adding them to the $evalist)
