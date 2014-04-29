@@ -1,7 +1,9 @@
 #!/usr/bin/env bats
 
+load test_helper
+
 @test "bon by itself does not do anything" {
   run bon
-  [ "$status" -eq 1 ]
-  # TODO: assert that $output contains "Bon needs target implementation."
+  assert_failure
+  assert_output_contains "Bon needs target implementation."
 }
