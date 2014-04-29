@@ -1,0 +1,14 @@
+language: node_js
+branches:
+  only:
+    - active
+    - master
+install:
+  - npm install -g
+  - npm run bats
+notifications:
+  email:
+    recipients:
+      - om@soundsapiens.com
+    on_success: change
+    on_failure: always

@@ -2,6 +2,8 @@
 
 This is a bash script that helps run node.js or any other scripts.
 
+[![NPM](https://nodei.co/npm/bon.png?compact=true)](https://www.npmjs.org/package/bon)
+
 
 ## Why
 
@@ -117,6 +119,12 @@ bash simply ignores it as a feature.
 To develop commands with the target script, and skip the eval, run
 `daps line <evalgen> ...` where `<evalgen>` is a meta-command that is
 being developed and `...` are any optional args it may take.
+
+
+## Test
+
+[Bats](https://github.com/sstephenson/bats) is used for testing.
+Do `npm run bats` once for `npm test` to work.
 
 
 ## LICENSE
