@@ -3,9 +3,7 @@ branches:
   only:
     - active
     - master
-install: npm install
-after_install: npm link
-before_script: echo "running the tests..."
+install: npm install -g
 notifications:
   email:
     recipients:
