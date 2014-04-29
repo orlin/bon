@@ -3,6 +3,7 @@ branches:
   only:
     - active
     - master
+after_install: npm link
 notifications:
   email:
     recipients:
