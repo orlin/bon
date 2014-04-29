@@ -16,8 +16,7 @@
 , "devDependencies": {}
 , "bin": { "bon" : "./bon.sh" }
 , "scripts":
-  { "preinstall": "rm -rf bats"
-  , "postinstall": "git clone https://github.com/sstephenson/bats.git"
+  { "install": "rm -rf bats && git clone https://github.com/sstephenson/bats.git"
   , "test": "bats/bin/bats -t test" }
 , "engines" : { "node" : "*" }
 , "licenses":
