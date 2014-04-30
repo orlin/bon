@@ -127,7 +127,7 @@ if [[ $# -eq 0
     echo
   fi
   # errors reflect on the script's exit status
-  [[ $help == "error" ]] && exit 1
+  if [[ $help == "error" ]]; then exit 1; fi
 
 elif [[ $1 == "line" ]]; then
   # use it to dev commands with (before adding them to the $evalist)
