@@ -24,6 +24,9 @@ the `$NODE_MODULES` env var to `cd` into the target module's source directory.
 Being packaged as a module itself helps with making it a dependency.
 It offers convenient *convention over configuration* with node.js assumptions.
 
+The target script needs not implement any commands / options - nor parse args.
+That would mean most of the features remain unused, except for the path / check.
+
 
 ### Install
 
