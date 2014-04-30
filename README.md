@@ -19,12 +19,10 @@ The latter, for any extra files the script may need, such as configuration.
 
 ## Use
 
-Bon is most convenient when paired with node.js cli scripts. It makes use of
-the `$NODE_MODULES` env var to `cd` into the target module source directory.
+Bon works best when paired with node.js cli scripts. It makes use of
+the `$NODE_MODULES` env var to `cd` into the target module's source directory.
 Being packaged as a module itself helps with making it a dependency.
-I use `commander` and thus assume `--help` is available, appending to it in
-a way that matches [commander](https://github.com/visionmedia/commander.js)'s
-formatting style.
+It offers convenient *convention over configuration* with node.js assumptions.
 
 
 ### Install
@@ -119,6 +117,13 @@ bash simply ignores it as a feature.
 To develop commands with the target script, and skip the eval, run
 `<cli> line <evalgen> ...` where `<evalgen>` is a meta-command that is
 being developed as part of a <cli> and `...` are some optional args it may take.
+
+
+### Help
+
+Set `$BON_HELP` to whatever option or command is to be used in place of no args.
+For example `export BON_HELP="--help"` will turn a bon-enabled `<command>`
+into `<command> --help`, as well as enable `command -?` to have the same effect.
 
 
 ## Test

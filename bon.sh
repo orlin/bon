@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# This `bon` mostly delegates to `$script <commands>`, easily node cli.
+# This `bon` impersonates another `<script> ...` - the (node.js) implementation.
 # The few extras are location-independence, automated meta-command eval,
-# a small safety mechanism, and a `$script line ...` - for cli dev.
+# a small safety mechanism, and a `$script line ...` - for easy cli dev.
+# It also helps a little with some extra help options.
 
 
 # HELPERS:
@@ -110,17 +111,19 @@ if [[ $# -eq 0
    || $1 == "-?"
    || $1 == "-h"
    || $1 == "--help"
-   || $1 == "help" || $help == "error" ]]; then
+   || $help == "error"
+   ]]; then
   # help comes first
   if [[ $help == "error" ]]; then
     echo # vertical spacing follows prior messages
   else
     # show $script help only if there was no error and the script can be run
-    [[ -x "$script" ]] && $script "$1"
+    [[ -x "$script" ]] && $script ${BON_HELP:-$1}
   fi
   # help specific to bon is not always shown
-  if [[ $# -ne 0 ]]; then
+  if [[ $# -ne 0 || -n $BON_HELP ]]; then
     # formatted to match `commander`'s style
+    # TODO: optionally coming from a file, given a path via env var
     echo "  Bash On Node:"
     echo
     echo "    Read https://github.com/orlin/bon"
