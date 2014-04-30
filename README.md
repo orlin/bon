@@ -1,6 +1,6 @@
 # bon -- bash on node
 
-This is a bash script that helps run node.js or any other scripts.
+This is a bash meta-cli script that helps run node.js or any other cli scripts.
 
 [![NPM](https://nodei.co/npm/bon.png?compact=true)](https://www.npmjs.org/package/bon)
 
@@ -117,8 +117,8 @@ A trailing `\n` is ok, even several trailing newlines are ok -
 bash simply ignores it as a feature.
 
 To develop commands with the target script, and skip the eval, run
-`daps line <evalgen> ...` where `<evalgen>` is a meta-command that is
-being developed and `...` are any optional args it may take.
+`<cli> line <evalgen> ...` where `<evalgen>` is a meta-command that is
+being developed as part of a <cli> and `...` are some optional args it may take.
 
 
 ## Test
