@@ -91,6 +91,8 @@ if [[ ! -x "$script" ]]; then
   if [[ $script == "./bin/bon.js" ]]; then
     # usually means that nothing has been implemented
     echo "Bon needs target implementation."
+  elif [[ -f "$script" ]]; then
+    echo "Script '$script' not executable."
   else
     echo "Script '$script' not found."
   fi
