@@ -94,6 +94,7 @@ fi
 # Cannot do anything withhout a $script to run - except echo more help -
 # check this far down because it may depend on $path or *bonvars*.
 if [[ ! -x "$script" ]]; then
+  echo
   if [[ ! -f "$script" ]]; then
     echo "Script '$script' not found."
   else
