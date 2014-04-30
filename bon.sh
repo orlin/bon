@@ -43,6 +43,13 @@ script="./bin/$name.${BON_EXT:-js}" # relative to the $name package
 [ -n "${BON_SCRIPT}" ] && script="${BON_SCRIPT}" # override entirely
 PATH="./node_modules/bon/node_modules/.bin:$PATH" # depend on coffee
 
+# There can only be one `bon`.
+if [[ $name == "bon" ]]; then
+  echo "Bon needs target implementation."
+  echo "See https://github.com/orlin/bon#readme"
+  exit 1
+fi
+
 # Go to the right path - this is verified further down.
 path=$(coffee -e "\
 process.stdout.write (\
@@ -87,14 +94,10 @@ fi
 # Cannot do anything withhout a $script to run - except echo more help -
 # check this far down because it may depend on $path or *bonvars*.
 if [[ ! -x "$script" ]]; then
-  echo
-  if [[ $script == "./bin/bon.js" ]]; then
-    # usually means that nothing has been implemented
-    echo "Bon needs target implementation."
-  elif [[ -f "$script" ]]; then
-    echo "Script '$script' not executable."
-  else
+  if [[ ! -f "$script" ]]; then
     echo "Script '$script' not found."
+  else
+    echo "Script '$script' not executable."
   fi
   help="error"
 fi

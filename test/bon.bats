@@ -6,4 +6,5 @@ load test_helper
   run bon
   assert_failure
   assert_output_contains "Bon needs target implementation."
+  assert_output_contains "See https://github.com/orlin/bon"
 }
