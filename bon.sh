@@ -106,20 +106,27 @@ fi
 
 # RUN: The sequence of if and elifs is not arbitrary - so don't rearrange!
 
-if [[ $1 == "" || $1 == "help" || $help == "error" ]]; then
+if [[ $# -eq 0
+   || $1 == "-?"
+   || $1 == "-h"
+   || $1 == "--help"
+   || $1 == "help" || $help == "error" ]]; then
   # help comes first
   if [[ $help == "error" ]]; then
     echo # vertical spacing follows prior messages
   else
     # show $script help only if there was no error and the script can be run
-    [[ -x "$script" ]] && $script --help
+    [[ -x "$script" ]] && $script "$1"
   fi
-  # help specific to bon, formatted to match `commander`'s style
-  echo "  Configuration:"
-  echo
-  echo "    Set \$NODE_PATH to run $name from anywhere,"
-  echo "    given that $name is a node module / script."
-  echo
+  # help specific to bon is not always shown
+  if [[ $# -ne 0 ]]; then
+    # formatted to match `commander`'s style
+    echo "  Bash On Node:"
+    echo
+    echo "    Read https://github.com/orlin/bon"
+    echo
+  fi
+  # errors reflect on the script's exit status
   [[ $help == "error" ]] && exit 1
 
 elif [[ $1 == "line" ]]; then
