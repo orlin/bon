@@ -129,7 +129,7 @@ into `<command> --help`, as well as enable `command -?` to have the same effect.
 ## Test
 
 [Bats](https://github.com/sstephenson/bats) is used for testing.
-Do `npm run bats` once for `npm test` to work.
+Do `npm run preptest` once, so that `npm test` will work.
 
 
 ## LICENSE

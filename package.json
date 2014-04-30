@@ -16,7 +16,7 @@
 , "devDependencies": {}
 , "bin": { "bon" : "./bon.sh" }
 , "scripts":
-  { "bats": "rm -rf bats && git clone https://github.com/sstephenson/bats.git"
+  { "preptest": "preptest.sh"
   , "test": "bats/bin/bats -t test" }
 , "engines" : { "node" : "*" }
 , "licenses":
