@@ -89,7 +89,7 @@ BON_SCRIPT="./bin/cli.coffee" #any path - ignoring BON_NAME and BON_EXT
 source bon "$@" # provided bon is installed globally
 ```
 
-The [configuration](https://github.com/orlin/bon/tree/active/test/configurtion)
+The [configuration](https://github.com/orlin/bon/tree/active/test/configuration)
 project contains some examples - testing what is described above as well as
 illustrating use of the features below.
 
