@@ -62,6 +62,8 @@ require('coffee-script/register')
 require('./clier.coffee')
 ```
 
+Here is [an example](https://github.com/orlin/bon/tree/active/test/convention).
+
 
 ### Configuration
 
@@ -75,7 +77,7 @@ The easier option for serious work is to have the vars set with the aid of
 
 To customize anything, including all the paths / file names, refer to your own
 script in `package.json` - e.g. `"bin": { "clirest" : "./bin/clier.sh" }`, and
-source bon with it.  Here is some example code:
+source bon with it.  Here is how that is done:
 
 ```bash
 #!/usr/bin/env bash
@@ -86,6 +88,10 @@ BON_SCRIPT="./bin/cli.coffee" #any path - ignoring BON_NAME and BON_EXT
 
 source bon "$@" # provided bon is installed globally
 ```
+
+The [configuration](https://github.com/orlin/bon/tree/active/test/configurtion)
+project contains some examples - testing what is described above as well as
+illustrating use of the features below.
 
 
 ## Features

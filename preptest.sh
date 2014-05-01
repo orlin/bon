@@ -6,7 +6,7 @@ git clone https://github.com/sstephenson/bats.git
 # ./bats/install.sh /usr/local
 
 # install test projects
-for project in "convention"; do
+for project in convention configuration; do
   pushd "test/$project"
   npm install
   npm link

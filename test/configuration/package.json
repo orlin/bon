@@ -1,6 +1,6 @@
-{ "name": "bonvent"
+{ "name": "bonumeant"
 , "private": true
-, "description": "implementation of bon following convention"
+, "description": "configure bon however you want"
 , "keywords": [ "bon", "test", "example" ]
 , "version": "0.0.1"
 , "bugs":
@@ -14,7 +14,10 @@
   , "coffee-script": "*"
   }
 , "devDependencies": {}
-, "bin": { "bonvent": "./node_modules/.bin/bon" }
+, "bin":
+  { "bonumeant": "./node_modules/.bin/bon"
+  , "bonbond": "./bin/bond.sh"
+  }
 , "scripts": {}
 , "licenses":
   [ { "type": "Unlicense"
