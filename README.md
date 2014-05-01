@@ -78,7 +78,7 @@ script in `package.json` - e.g. `"bin": { "clirest" : "./bin/clier.sh" }`, and
 source bon with it.  Here is some example code:
 
 ```bash
-#!/bin/bash
+#!/usr/bin/env bash
 
 BON_NAME="clier" # must match module's name
 BON_EXT="coffee" # $BON_SCRIPT would be "./bin/clier.coffee"
