@@ -139,7 +139,7 @@ For example `export BON_HELP="--help"` will turn a bon-enabled `<command>`
 into `<command> --help`, as well as enable `command -?` to have the same effect.
 
 If you want to show just `bon`'s help when calling your bin script without args,
-use `BON_HELP=" "` - the empty space doesn't affect the target, (no help option).
+use `BON_HELP=" "` - the empty space doesn't affect the target - no help option.
 Even if the target has a help option, here it would have to be passed explicitly.
 
 
