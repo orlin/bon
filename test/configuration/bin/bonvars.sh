@@ -1,3 +1,1 @@
-#!/usr/bin/env bash
-
-export BON_HELP="--whatever"
+export BON_HELP=" "

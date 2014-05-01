@@ -122,6 +122,7 @@ if [[ $# -eq 0
   fi
   # help specific to bon is not always shown
   if [[ $# -ne 0 || -n $BON_HELP ]]; then
+    # if we got here witn non-zero arguments, or non-zero-length of $BON_HELP
     # formatted to match `commander`'s style
     # TODO: optionally coming from a file, given a path via env var
     echo "  Bash On Node:"
