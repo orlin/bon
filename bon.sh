@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # This `bon` impersonates another `<script> ...` - the (node.js) implementation.
 # The few extras are location-independence, automated meta-command eval,

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # use ./bats/bin/bats or install it somewhere else
 rm -rf bats
