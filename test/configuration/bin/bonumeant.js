@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 
-console.log("bonumeant with bin/bonvars.sh") // and bon help
+console.log("Ran bonumeant with bin/bonvars.sh and bon help shown below...\n")

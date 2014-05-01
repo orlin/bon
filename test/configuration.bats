@@ -10,6 +10,7 @@ setup() {
   run bonumeant
   assert_success
   assert_output_contains "bonumeant with bin/bonvars.sh"
+  assert_output_contains "https://github.com/orlin/bon"
 }
 
 @test "bonbond bond bon" {

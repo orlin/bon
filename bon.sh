@@ -38,7 +38,7 @@ include () {
 
 # Variables, with assumptions...
 bon="bon" # the command of the bon script - matching package.json
-base=$(basename "${0##*/}") # ${BASH_SOURCE[0]} would always be $bon
+base=$(basename "${0##*/}") # ${BASH_SOURCE[0]} is sometimes $bon
 name=${BON_NAME:-$base} # of the node package that is using bon
 script="./bin/$name.${BON_EXT:-js}" # relative to the $name package
 [ -n "${BON_SCRIPT}" ] && script="${BON_SCRIPT}" # override entirely
@@ -79,8 +79,8 @@ fi
 
 # The moment of $path_ok truth.
 if [[ "$path_ok" == "yes" ]]; then
-    # If this was run via $bon, provide an easy way to load more vars.
-    [[ $base == "$bon" ]] && include ./bin/bonvars.sh
+    # If all the names match, provide an easy way to load more vars.
+    [[ $base == "$name" ]] && include ./bin/bonvars.sh
 
     # Space-separated list of commands that produce commands to eval.
     # Be careful what goes here - running arbitrary strings can be bad!
