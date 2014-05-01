@@ -74,6 +74,10 @@ certainly fine to first try it this way.
 
 The easier option for serious work is to have the vars set with the aid of
 `bin/bonvars.sh` - bon will source it, making available whatever is `export`ed.
+This comes with limitations. There can only be one bin script in `package.json`
+that has to be named same as the module and again `bin/<name>.js` presence
+is expected.  There are very few vars that can be customized - `BON_EVALIST`
+and `BON_HELP` come to mind.
 
 To customize anything, including all the paths / file names, refer to your own
 script in `package.json` - e.g. `"bin": { "clirest" : "./bin/clier.sh" }`, and
