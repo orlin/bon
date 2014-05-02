@@ -142,6 +142,9 @@ If you want to show just `bon`'s help when calling your bin script without args,
 use `BON_HELP=" "` - the empty space doesn't affect the target - no help option.
 Even if the target has a help option, here it would have to be passed explicitly.
 
+If you want to show your own help text instead of bon's default, set
+`$BON_HELP_FILE` to a text file path, relative to the project's root directory.
+
 
 ## Test
 

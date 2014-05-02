@@ -18,3 +18,9 @@ setup() {
   assert_success
   assert_output_contains "bonbond is bond.coffee via bond.sh bon"
 }
+
+@test "bonbond --help #custom" {
+  run bonbond --help
+  assert_success
+  assert_output_contains "made to illustrate use of bon"
+}
