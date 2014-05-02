@@ -1,8 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# This `bon` mostly delegates to `$script <commands>`, easily node cli.
+# This `bon` impersonates another `<script> ...` - the (node.js) implementation.
 # The few extras are location-independence, automated meta-command eval,
-# a small safety mechanism, and a `$script line ...` - for cli dev.
+# a small safety mechanism, and a `$script line ...` - for easy cli dev.
+# It also helps a little with some extra help options.
 
 
 # HELPERS:
@@ -37,11 +38,18 @@ include () {
 
 # Variables, with assumptions...
 bon="bon" # the command of the bon script - matching package.json
-base=$(basename "${0##*/}") # ${BASH_SOURCE[0]} would always be $bon
+base=$(basename "${0##*/}") # ${BASH_SOURCE[0]} is sometimes $bon
 name=${BON_NAME:-$base} # of the node package that is using bon
 script="./bin/$name.${BON_EXT:-js}" # relative to the $name package
 [ -n "${BON_SCRIPT}" ] && script="${BON_SCRIPT}" # override entirely
 PATH="./node_modules/bon/node_modules/.bin:$PATH" # depend on coffee
+
+# There can only be one `bon`.
+if [[ $name == "bon" ]]; then
+  echo "Bon needs target implementation."
+  echo "See https://github.com/orlin/bon#readme"
+  exit 1
+fi
 
 # Go to the right path - this is verified further down.
 path=$(coffee -e "\
@@ -71,8 +79,8 @@ fi
 
 # The moment of $path_ok truth.
 if [[ "$path_ok" == "yes" ]]; then
-    # If this was run via $bon, provide an easy way to load more vars.
-    [[ $base == "$bon" ]] && include ./bin/bonvars.sh
+    # If all the names match, provide an easy way to load more vars.
+    [[ $base == "$name" ]] && include ./bin/bonvars.sh
 
     # Space-separated list of commands that produce commands to eval.
     # Be careful what goes here - running arbitrary strings can be bad!
@@ -88,11 +96,10 @@ fi
 # check this far down because it may depend on $path or *bonvars*.
 if [[ ! -x "$script" ]]; then
   echo
-  if [[ $script == "./bin/bon.js" ]]; then
-    # usually means that nothing has been implemented
-    echo "Bon needs target implementation."
-  else
+  if [[ ! -f "$script" ]]; then
     echo "Script '$script' not found."
+  else
+    echo "Script '$script' not executable."
   fi
   help="error"
 fi
@@ -100,21 +107,34 @@ fi
 
 # RUN: The sequence of if and elifs is not arbitrary - so don't rearrange!
 
-if [[ $1 == "" || $1 == "help" || $help == "error" ]]; then
+if [[ $# -eq 0
+   || $1 == "-?"
+   || $1 == "-h"
+   || $1 == "--help"
+   || $help == "error"
+   ]]; then
   # help comes first
   if [[ $help == "error" ]]; then
     echo # vertical spacing follows prior messages
   else
     # show $script help only if there was no error and the script can be run
-    [[ -x "$script" ]] && $script --help
+    [[ -x "$script" ]] && $script ${BON_HELP:-$1}
   fi
-  # help specific to bon, formatted to match `commander`'s style
-  echo "  Configuration:"
-  echo
-  echo "    Set \$NODE_PATH to run $name from anywhere,"
-  echo "    given that $name is a node module / script."
-  echo
-  [[ $help == "error" ]] && exit 1
+  # help specific to bon is not always shown
+  if [[ $# -ne 0 || -n $BON_HELP ]]; then
+    # if we got here witn non-zero arguments, or non-zero-length of $BON_HELP
+    if [[ -z $BON_HELP_FILE ]]; then
+      # formatted to match `commander`'s style
+      echo "  Bash On Node:"
+      echo
+      echo "    Read https://github.com/orlin/bon"
+    else
+      cat $BON_HELP_FILE
+    fi
+    echo # because sometimes extra trailing newlines get auto-trimmed.
+  fi
+  # errors reflect on the script's exit status
+  if [[ $help == "error" ]]; then exit 1; fi
 
 elif [[ $1 == "line" ]]; then
   # use it to dev commands with (before adding them to the $evalist)

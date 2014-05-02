@@ -1,6 +1,6 @@
 # bon -- bash on node
 
-This is a bash script that helps run node.js or any other scripts.
+This is a bash meta-cli script that helps run node.js or any other cli scripts.
 
 [![NPM](https://nodei.co/npm/bon.png?compact=true)](https://www.npmjs.org/package/bon)
 
@@ -19,12 +19,13 @@ The latter, for any extra files the script may need, such as configuration.
 
 ## Use
 
-Bon is most convenient when paired with node.js cli scripts. It makes use of
-the `$NODE_MODULES` env var to `cd` into the target module source directory.
+Bon works best when paired with node.js cli scripts. It makes use of
+the `$NODE_MODULES` env var to `cd` into the target module's source directory.
 Being packaged as a module itself helps with making it a dependency.
-I use `commander` and thus assume `--help` is available, appending to it in
-a way that matches [commander](https://github.com/visionmedia/commander.js)'s
-formatting style.
+It offers convenient *convention over configuration* with node.js assumptions.
+
+The target script needs not implement any commands / options - nor parse args.
+That would mean most of the features remain unused, except for the path / check.
 
 
 ### Install
@@ -61,6 +62,8 @@ require('coffee-script/register')
 require('./clier.coffee')
 ```
 
+Here is [an example](https://github.com/orlin/bon/tree/active/test/convention).
+
 
 ### Configuration
 
@@ -71,13 +74,17 @@ certainly fine to first try it this way.
 
 The easier option for serious work is to have the vars set with the aid of
 `bin/bonvars.sh` - bon will source it, making available whatever is `export`ed.
+This comes with limitations. There can only be one bin script in `package.json`
+that has to be named same as the module and again `bin/<name>.js` presence
+is expected.  There are very few vars that can be customized - `BON_EVALIST`
+and `BON_HELP` come to mind.
 
 To customize anything, including all the paths / file names, refer to your own
 script in `package.json` - e.g. `"bin": { "clirest" : "./bin/clier.sh" }`, and
-source bon with it.  Here is some example code:
+source bon with it.  Here is how that is done:
 
 ```bash
-#!/bin/bash
+#!/usr/bin/env bash
 
 BON_NAME="clier" # must match module's name
 BON_EXT="coffee" # $BON_SCRIPT would be "./bin/clier.coffee"
@@ -85,6 +92,10 @@ BON_SCRIPT="./bin/cli.coffee" #any path - ignoring BON_NAME and BON_EXT
 
 source bon "$@" # provided bon is installed globally
 ```
+
+The [configuration](https://github.com/orlin/bon/tree/active/test/configuration)
+project contains some examples - testing what is described above as well as
+illustrating use of the features below.
 
 
 ## Features
@@ -117,14 +128,28 @@ A trailing `\n` is ok, even several trailing newlines are ok -
 bash simply ignores it as a feature.
 
 To develop commands with the target script, and skip the eval, run
-`daps line <evalgen> ...` where `<evalgen>` is a meta-command that is
-being developed and `...` are any optional args it may take.
+`<cli> line <evalgen> ...` where `<evalgen>` is a meta-command that is
+being developed as part of a <cli> and `...` are some optional args it may take.
+
+
+### Help
+
+Set `$BON_HELP` to whatever option or command is to be used in place of no args.
+For example `export BON_HELP="--help"` will turn a bon-enabled `<command>`
+into `<command> --help`, as well as enable `command -?` to have the same effect.
+
+If you want to show just `bon`'s help when calling your bin script without args,
+use `BON_HELP=" "` - the empty space doesn't affect the target - no help option.
+Even if the target has a help option, here it would have to be passed explicitly.
+
+If you want to show your own help text instead of bon's default, set
+`$BON_HELP_FILE` to a text file path, relative to the project's root directory.
 
 
 ## Test
 
 [Bats](https://github.com/sstephenson/bats) is used for testing.
-Do `npm run bats` once for `npm test` to work.
+Do `npm run preptest` once, so that `npm test` will work.
 
 
 ## LICENSE

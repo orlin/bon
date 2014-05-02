@@ -5,7 +5,7 @@ branches:
     - master
 install:
   - npm install -g
-  - npm run bats
+  - npm run preptest
 notifications:
   email:
     recipients:

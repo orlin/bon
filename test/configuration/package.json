@@ -1,0 +1,27 @@
+{ "name": "bonumeant"
+, "private": true
+, "description": "configure bon however you want"
+, "keywords": [ "bon", "test", "example" ]
+, "version": "0.0.1"
+, "bugs":
+  { "mail": "om@soundsapiens.com"
+  , "url" : "https://github.com/orlin/bon/issues"
+  }
+, "author": "Orlin M Bozhinov <om@soundsapiens.com>"
+, "contributors": []
+, "dependencies":
+  { "bon": "*"
+  , "coffee-script": "*"
+  }
+, "devDependencies": {}
+, "bin":
+  { "bonumeant": "./node_modules/.bin/bon"
+  , "bonbond": "./bin/bond.sh"
+  }
+, "scripts": {}
+, "licenses":
+  [ { "type": "Unlicense"
+    , "url" : "http://unlicense.org"
+    }
+  ]
+}

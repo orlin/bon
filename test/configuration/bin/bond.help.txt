@@ -1,0 +1,3 @@
+  Purpose:
+
+    This was made to illustrate use of bon for node.js cli scripts.
