@@ -123,12 +123,15 @@ if [[ $# -eq 0
   # help specific to bon is not always shown
   if [[ $# -ne 0 || -n $BON_HELP ]]; then
     # if we got here witn non-zero arguments, or non-zero-length of $BON_HELP
-    # formatted to match `commander`'s style
-    # TODO: optionally coming from a file, given a path via env var
-    echo "  Bash On Node:"
-    echo
-    echo "    Read https://github.com/orlin/bon"
-    echo
+    if [[ -z $BON_HELP_FILE ]]; then
+      # formatted to match `commander`'s style
+      echo "  Bash On Node:"
+      echo
+      echo "    Read https://github.com/orlin/bon"
+    else
+      cat $BON_HELP_FILE
+    fi
+    echo # because sometimes extra trailing newlines get auto-trimmed.
   fi
   # errors reflect on the script's exit status
   if [[ $help == "error" ]]; then exit 1; fi
