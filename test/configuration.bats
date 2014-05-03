@@ -26,9 +26,15 @@ setup() {
   assert_output_contains "made to illustrate use of bon"
 }
 
-@test "bonbond #same as the `bonbond --help` above" {
+@test "bonbond #same as bonbond --help" {
   # because BON_HELP is set, no args causes --help
   run bonbond
   assert_success
   assert_output_contains "made to illustrate use of bon"
+}
+
+@test "bonbond four #produces a command to auto-eval" {
+  run bonbond four
+  assert_success
+  assert_output "4"
 }

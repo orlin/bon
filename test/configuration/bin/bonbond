@@ -11,4 +11,9 @@ bond
   .description("says what bonbond is about - nothing substantial")
   .action -> console.log "bonbond is bond.coffee via bond.sh bon"
 
+bond
+  .command("four")
+  .description("produces a command that counts four words")
+  .action -> console.log "echo here are four words | wc -w | tr -d ' '"
+
 bond.parse(process.argv)
