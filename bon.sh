@@ -126,7 +126,8 @@ if [[ $# -eq 0
     if [[ -z $BON_HELP_FILE ]]; then
       echo "See https://github.com/orlin/bon#readme for more info."
       echo
-    else
+    elif [[ $help != "error" ]]; then
+      # the error could mean bad path - so the help file won't be found
       help_txt=$(cat $BON_HELP_FILE)
       if [[ ! $help_txt == "" ]]; then
         # only if the file wasn't empty
