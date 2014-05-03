@@ -59,3 +59,9 @@ setup() {
   assert_output_contains "This '.' path is not the root directory of bonumeant."
   popd
 }
+
+@test "bonbond # with a NODE_PATH assumption" {
+  export NODE_PATH="$(dirname $(which node))/../lib/node_modules"
+  run bonbond
+  assert_success
+}
