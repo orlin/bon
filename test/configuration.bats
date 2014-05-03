@@ -56,7 +56,7 @@ setup() {
   export NODE_PATH=""
   run bonbond
   assert_failure
-  assert_output_contains "This '.' path is not the root directory of bonumeant."
+  assert_output_contains "path is not the root directory of bonumeant"
   popd
 }
 
