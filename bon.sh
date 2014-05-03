@@ -54,10 +54,10 @@ fi
 # Go to the right path - this is verified further down.
 path=$(coffee -e "\
 process.stdout.write (\
-  if process.env.NODE_PATH is undefined then '.'\
+  if (process.env.NODE_PATH ? '') is '' then '.'\
   else process.env.NODE_PATH.split(':')[0] + '/$name')"
 )
-cd "$path"
+[[ -d $path ]] && cd "$path"
 
 # Make sure we are in the right place, or don't run anything.
 if [[ "$BON_CHECK" == "no" ]]; then
@@ -124,14 +124,17 @@ if [[ $# -eq 0
   if [[ $# -ne 0 || -n $BON_HELP ]]; then
     # if we got here witn non-zero arguments, or non-zero-length of $BON_HELP
     if [[ -z $BON_HELP_FILE ]]; then
-      # formatted to match `commander`'s style
-      echo "  Bash On Node:"
+      echo "See https://github.com/orlin/bon#readme for more info."
       echo
-      echo "    Read https://github.com/orlin/bon"
-    else
-      cat $BON_HELP_FILE
+    elif [[ $help != "error" ]]; then
+      # the error could mean bad path - so the help file won't be found
+      help_txt=$(cat $BON_HELP_FILE)
+      if [[ ! $help_txt == "" ]]; then
+        # only if the file wasn't empty
+        echo "$help_txt" # the quotes are necessary to keep `\n`s and the spaces
+        echo # because sometimes extra trailing newlines get auto-trimmed
+      fi
     fi
-    echo # because sometimes extra trailing newlines get auto-trimmed.
   fi
   # errors reflect on the script's exit status
   if [[ $help == "error" ]]; then exit 1; fi
