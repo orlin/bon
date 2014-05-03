@@ -4,7 +4,7 @@
 # Either way is fine with bon.
 
 export BON_NAME="bonumeant"
-export BON_SCRIPT="bin/bond.coffee"
+export BON_SCRIPT="bin/bonbond"
 export BON_HELP="--help"
 export BON_HELP_FILE="bin/bond.help.txt"
 

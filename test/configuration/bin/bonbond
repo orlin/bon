@@ -4,9 +4,11 @@ bond = require("commander")
 
 bond.version(require("../package.json").version)
 
+bond.usage("[command] [options]")
+
 bond
   .command("define")
-  .description("says what bonbond is about - nothing substantial, just a test")
+  .description("says what bonbond is about - nothing substantial")
   .action -> console.log "bonbond is bond.coffee via bond.sh bon"
 
 bond.parse(process.argv)
