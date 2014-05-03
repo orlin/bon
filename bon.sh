@@ -54,10 +54,10 @@ fi
 # Go to the right path - this is verified further down.
 path=$(coffee -e "\
 process.stdout.write (\
-  if process.env.NODE_PATH is undefined then '.'\
+  if (process.env.NODE_PATH ? '') is '' then '.'\
   else process.env.NODE_PATH.split(':')[0] + '/$name')"
 )
-cd "$path"
+[[ -d $path ]] && cd "$path"
 
 # Make sure we are in the right place, or don't run anything.
 if [[ "$BON_CHECK" == "no" ]]; then
