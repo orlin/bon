@@ -13,13 +13,13 @@ setup() {
   assert_output_contains "https://github.com/orlin/bon"
 }
 
-@test "bonbond bond bon" {
-  run bonbond
+@test "bonbond define #commander command" {
+  run bonbond define
   assert_success
   assert_output_contains "bonbond is bond.coffee via bond.sh bon"
 }
 
-@test "bonbond --help #custom" {
+@test "bonbond --help #commander's + custom text" {
   run bonbond --help
   assert_success
   assert_output_contains "made to illustrate use of bon"

@@ -12,6 +12,7 @@
 , "dependencies":
   { "bon": "*"
   , "coffee-script": "*"
+  , "commander": "*"
   }
 , "devDependencies": {}
 , "bin":
