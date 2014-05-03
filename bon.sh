@@ -124,14 +124,16 @@ if [[ $# -eq 0
   if [[ $# -ne 0 || -n $BON_HELP ]]; then
     # if we got here witn non-zero arguments, or non-zero-length of $BON_HELP
     if [[ -z $BON_HELP_FILE ]]; then
-      # formatted to match `commander`'s style
-      echo "  Bash On Node:"
+      echo "See https://github.com/orlin/bon#readme for more info."
       echo
-      echo "    Read https://github.com/orlin/bon"
     else
-      cat $BON_HELP_FILE
+      help_txt=$(cat $BON_HELP_FILE)
+      if [[ ! $help_txt == "" ]]; then
+        # only if the file wasn't empty
+        echo "$help_txt" # the quotes are necessary to keep `\n`s and the spaces
+        echo # because sometimes extra trailing newlines get auto-trimmed
+      fi
     fi
-    echo # because sometimes extra trailing newlines get auto-trimmed.
   fi
   # errors reflect on the script's exit status
   if [[ $help == "error" ]]; then exit 1; fi

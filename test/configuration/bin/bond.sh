@@ -6,6 +6,6 @@
 export BON_NAME="bonumeant"
 export BON_SCRIPT="bin/bonbond"
 export BON_HELP="--help"
-export BON_HELP_FILE="bin/bond.help.txt"
+export BON_HELP_FILE="bin/bond.help.txt" # matching commander's `--help` style
 
 source bon "$@"
