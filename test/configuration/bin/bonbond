@@ -16,4 +16,9 @@ bond
   .description("produces a command that counts four words")
   .action -> console.log "echo here are four words | wc -w | tr -d ' '"
 
+bond
+  .command("multi")
+  .description("produces a multiline string that fails to auto-eval")
+  .action -> console.log "1\n2\n3"
+
 bond.parse(process.argv)

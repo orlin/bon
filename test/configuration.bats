@@ -38,3 +38,15 @@ setup() {
   assert_success
   assert_output "4"
 }
+
+@test "bonbond line four #gives the one-line command, skipping the auto-eval" {
+  run bonbond line four
+  assert_success
+  assert_output "echo here are four words | wc -w | tr -d ' '"
+}
+
+@test "bonbond multi #produces a multi-line string that can't auto-eval" {
+  run bonbond multi
+  assert_failure
+  assert_output_contains "yield exactly one line to eval, exiting instead"
+}
