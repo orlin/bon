@@ -20,7 +20,15 @@ setup() {
 }
 
 @test "bonbond --help #commander's + custom text" {
-  run bonbond --help
+  # notice how bon enables more ways to get help
+  run bonbond -?
+  assert_success
+  assert_output_contains "made to illustrate use of bon"
+}
+
+@test "bonbond #same as the `bonbond --help` above" {
+  # because BON_HELP is set, no args causes --help
+  run bonbond
   assert_success
   assert_output_contains "made to illustrate use of bon"
 }
