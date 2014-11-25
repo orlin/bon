@@ -16,7 +16,8 @@
 , "devDependencies": {}
 , "bin": { "bon" : "./bon.sh" }
 , "scripts":
-  { "preptest": "./preptest.sh"
+  { "install": "./install-g.sh"
+  , "preptest": "./preptest.sh"
   , "test": "bats/bin/bats -t test" }
 , "engines" : { "node" : "*" }
 , "licenses":
