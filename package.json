@@ -1,7 +1,7 @@
 { "name": "bon"
 , "description": "bash on node"
 , "keywords": [ "bash", "meta", "cli" ]
-, "version": "0.1.0"
+, "version": "0.1.1"
 , "repository":
   { "type": "git"
   , "url": "git://github.com/orlin/bon.git"
@@ -12,11 +12,14 @@
   }
 , "author": "Orlin M Bozhinov <om@soundsapiens.com>"
 , "contributors": []
-, "dependencies": { "coffee-script": "^1.8.0" }
+, "dependencies":
+  { "coffee-script": "^1.8.0"
+  , "install-g": "*" }
 , "devDependencies": {}
 , "bin": { "bon" : "./bon.sh" }
 , "scripts":
-  { "preptest": "./preptest.sh"
+  { "install": "./node_modules/.bin/install-g"
+  , "preptest": "./preptest.sh"
   , "test": "bats/bin/bats -t test" }
 , "engines" : { "node" : "*" }
 , "licenses":
