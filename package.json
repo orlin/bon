@@ -12,11 +12,13 @@
   }
 , "author": "Orlin M Bozhinov <om@soundsapiens.com>"
 , "contributors": []
-, "dependencies": { "coffee-script": "^1.8.0" }
+, "dependencies":
+  { "coffee-script": "^1.8.0"
+  , "install-g": "*" }
 , "devDependencies": {}
 , "bin": { "bon" : "./bon.sh" }
 , "scripts":
-  { "install": "./node_modules/.bin/coffee ./install-g.coffee"
+  { "install": "./node_modules/.bin/install-g"
   , "preptest": "./preptest.sh"
   , "test": "bats/bin/bats -t test" }
 , "engines" : { "node" : "*" }
