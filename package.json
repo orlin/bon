@@ -17,6 +17,7 @@
   , "install-g": "*" }
 , "devDependencies": {}
 , "bin": { "bon" : "./bon.sh" }
+, "preferGlobal": true
 , "scripts":
   { "install": "./node_modules/.bin/install-g"
   , "preptest": "./preptest.sh"
