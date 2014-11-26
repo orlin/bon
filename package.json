@@ -1,7 +1,7 @@
 { "name": "bon"
 , "description": "bash on node"
 , "keywords": [ "bash", "meta", "cli" ]
-, "version": "0.1.0"
+, "version": "0.1.1"
 , "repository":
   { "type": "git"
   , "url": "git://github.com/orlin/bon.git"
