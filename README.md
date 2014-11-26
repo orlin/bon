@@ -31,20 +31,14 @@ That would mean most of the features remain unused, except for the path / check.
 ### Install
 
 In order to run your commands from anywhere, install `bon` globally with
-`npm install bon -g`.  If you want to make this automatic,
-add the following to `package.json`:
-
-```js
-"scripts": {
-  "preinstall": "npm i -g bon"
-}
-```
+`npm i -g bon`.  If you want to make this automatic, just put `bon` in
+your project's dependencies and this will be taken care of - thanks to
+[install-g](https://github.com/orlin/install-g).  Bon depends on `coffee-script`.
+If you rather not have that installed globally as well, again you'd have to add
+bon as a dependency so that `coffee` can be found.  In short - depend on it.
 
 Of-course, your bon-enabled module should also be installed globally
 so that its cli scripts can be found on the $PATH.
-
-Bon depends on `coffee-script`.  If you rather not have that installed globally
-as well, you'd have to add bon as a dependency so that `coffee` can be found.
 
 
 ### Convention
