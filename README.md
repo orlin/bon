@@ -1,4 +1,4 @@
-# bon -- bash on node [![Build Status](https://secure.travis-ci.org/orlin/bon.png)](http://travis-ci.org/orlin/bon)
+# bon -- bash on node [![Build Status](https://img.shields.io/travis/orlin/bon.svg)](http://travis-ci.org/orlin/bon)
 
 This is a bash meta-cli script that helps run node.js or any other cli scripts.
 
