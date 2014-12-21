@@ -51,13 +51,24 @@ if [[ $name == "bon" ]]; then
   exit 1
 fi
 
-# Go to the right path - this is verified further down.
-path=$(coffee -e "\
-process.stdout.write (\
-  if (process.env.NODE_PATH ? '') is '' then '.'\
-  else process.env.NODE_PATH.split(':')[0] + '/$name')"
-)
-[[ -d $path ]] && cd "$path"
+path='.' # default - a last resort
+# The $path is preferably a subdir of one of the following, to run from anywhere.
+if [[ -n "${NODE_PATH}" ]]; then
+  NODE_PATH_TEST="${NODE_PATH}"
+else
+  NODE_PATH_TEST="/usr/lib/node_modules:/usr/local/lib/node_modules"
+  NODE_PATH_TEST="${NODE_PATH_TEST}:$(dirname $(which npm))/../lib/node_modules"
+fi
+
+# Find the first NODE_PATH that contains the module.
+IFS=':' read -ra node_paths <<< "${NODE_PATH_TEST}"
+for path_test in "${node_paths[@]}"; do
+  if [[ -d "${path_test}/${name}" ]]; then
+    path="${path_test}/${name}"
+    cd "$path"
+    break
+  fi
+done
 
 # Make sure we are in the right place, or don't run anything.
 if [[ "$BON_CHECK" == "no" ]]; then
@@ -89,6 +100,9 @@ if [[ "$path_ok" == "yes" ]]; then
 else
   echo
   echo "This '$path' path is not the root directory of $name."
+  if [[ -z "${NODE_PATH}" ]]; then
+    echo "Please set \$NODE_PATH - where global node_modules are installed."
+  fi
   help="error"
 fi
 

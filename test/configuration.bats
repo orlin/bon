@@ -51,17 +51,13 @@ setup() {
   assert_output_contains "yield exactly one line to eval, exiting instead"
 }
 
-@test "bonbond # run from a wrong place and no NODE_PATH" {
+@test "bonbond # run from a wrong place and no NODE_PATH, yet guessed ok" {
   pushd ..
   export NODE_PATH=""
   run bonbond
-  assert_failure
-  assert_output_contains "path is not the root directory of bonumeant"
-  popd
-}
-
-@test "bonbond # with a NODE_PATH assumption" {
-  export NODE_PATH="$(dirname $(which node))/../lib/node_modules"
-  run bonbond
   assert_success
+  # the $NODE_PATH used to be required for tests to pass
+  # assert_failure
+  # assert_output_contains "path is not the root directory of bonumeant"
+  popd
 }
