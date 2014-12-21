@@ -42,7 +42,6 @@ base=$(basename "${0##*/}") # ${BASH_SOURCE[0]} is sometimes $bon
 name=${BON_NAME:-$base} # of the node package that is using bon
 script="./bin/$name.${BON_EXT:-js}" # relative to the $name package
 [ -n "${BON_SCRIPT}" ] && script="${BON_SCRIPT}" # override entirely
-PATH="./node_modules/bon/node_modules/.bin:$PATH" # depend on coffee
 
 # There can only be one `bon`.
 if [[ $name == "bon" ]]; then
@@ -77,8 +76,7 @@ else
   [ -z "$BON_CHECK_FILE" ] && BON_CHECK_FILE=$path/package.json
   if [[ -f "$BON_CHECK_FILE" ]]; then
     if [ -z "$BON_CHECK_GREP" ]; then
-      package=$(coffee -e "process.stdout.write \
-        require('$path/package.json').name")
+      package=$(node -e "process.stdout.write(require('${path}/package.json').name)")
       if [[ $name == "$package" ]]; then
         path_ok="yes"
       fi
