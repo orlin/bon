@@ -1,10 +1,11 @@
 language: node_js
 branches:
   only:
+    - test
     - active
     - master
 install:
-  - npm install -g
+  - npm install
   - npm run preptest
 notifications:
   email:

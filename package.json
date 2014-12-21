@@ -14,13 +14,14 @@
 , "contributors": []
 , "dependencies":
   { "install-g": "*" }
-, "devDependencies": {}
+, "devDependencies":
+  { "bats": "git+https://github.com/sstephenson/bats.git#master" }
 , "bin": { "bon" : "./bon.sh" }
 , "preferGlobal": true
 , "scripts":
-  { "install": "./node_modules/.bin/install-g || true"
+  { "install": "node_modules/.bin/install-g || true"
   , "preptest": "./preptest.sh"
-  , "test": "bats/bin/bats -t test" }
+  , "test": "node_modules/bats/libexec/bats -t test" }
 , "engines" : { "node" : "*" }
 , "licenses":
   [ { "type": "Unlicense"
