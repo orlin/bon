@@ -19,8 +19,7 @@
 , "bin": { "bon" : "./bon.sh" }
 , "preferGlobal": true
 , "scripts":
-  { "preinstall": "./preptest.sh || true"
-  , "install": "node_modules/.bin/install-g || true"
+  { "install": "node_modules/.bin/install-g || true"
   , "preptest": "./preptest.sh"
   , "test": "node_modules/.bin/batshit -t test" }
 , "engines" : { "node" : "*" }

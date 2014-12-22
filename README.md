@@ -178,8 +178,7 @@ If you want to show your own help text instead of bon's default, set
 [BATS](https://github.com/sstephenson/bats) is used for testing via
 [batshit](https://github.com/orlin/batshit).
 
-In case `npm install`'s `preinstall` script somehow failed,
-do `npm run preptest` once, so that `npm test` will work.
+Do `npm run preptest` once, so that `npm test` will work.
 
 
 ## LICENSE
