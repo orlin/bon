@@ -173,10 +173,13 @@ If you want to show your own help text instead of bon's default, set
 `$BON_HELP_FILE` to a text file path, relative to the project's root directory.
 
 
-## Test [![Build Status](https://img.shields.io/travis/orlin/bon.svg?style=flat)]()
+## Test [![Build Status](https://img.shields.io/travis/orlin/bon.svg?style=flat)](https://travis-ci.org/orlin/bon)
 
-[Bats](https://github.com/sstephenson/bats) is used for testing.
-Do `npm run preptest` once, so that `npm test` will work.
+[BATS](https://github.com/sstephenson/bats) is used for testing via
+[batshit](https://github.com/orlin/batshit).
+
+In case `npm install`'s `preinstall` script somehow failed,
+do `npm run preptest` once, so that `npm test` will work.
 
 
 ## LICENSE
