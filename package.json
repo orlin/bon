@@ -1,7 +1,7 @@
 { "name": "bon"
 , "description": "bash on node"
 , "keywords": [ "bash", "meta", "cli", "NODE_PATH", "global", "module", "path" ]
-, "version": "0.1.2"
+, "version": "0.1.3"
 , "repository":
   { "type": "git"
   , "url": "git://github.com/orlin/bon.git"
@@ -14,13 +14,14 @@
 , "contributors": []
 , "dependencies":
   { "install-g": "*" }
-, "devDependencies": {}
+, "devDependencies":
+  { "batshit": "*" }
 , "bin": { "bon" : "./bon.sh" }
 , "preferGlobal": true
 , "scripts":
-  { "install": "./node_modules/.bin/install-g || true"
+  { "install": "node_modules/.bin/install-g || true"
   , "preptest": "./preptest.sh"
-  , "test": "bats/bin/bats -t test" }
+  , "test": "node_modules/.bin/batshit -t test" }
 , "engines" : { "node" : "*" }
 , "licenses":
   [ { "type": "Unlicense"

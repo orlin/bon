@@ -1,6 +1,6 @@
 #!/usr/bin/env bats
 
-load test_helper
+load ../node_modules/batshit/bin/batshit-helpers
 
 setup() {
   cd test/configuration
