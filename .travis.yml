@@ -3,8 +3,10 @@ branches:
   only:
     - test
     - active
+    - master
 install:
   - npm install
+  - npm i -g batshit
   - npm run preptest
 notifications:
   email:
