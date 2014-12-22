@@ -15,13 +15,13 @@
 , "dependencies":
   { "install-g": "*" }
 , "devDependencies":
-  { "bats": "git+https://github.com/sstephenson/bats.git#master" }
+  { "batshit": "*" }
 , "bin": { "bon" : "./bon.sh" }
 , "preferGlobal": true
 , "scripts":
   { "install": "node_modules/.bin/install-g || true"
   , "preptest": "./preptest.sh"
-  , "test": "node_modules/bats/libexec/bats -t test" }
+  , "test": "node_modules/.bin/batshit -t test" }
 , "engines" : { "node" : "*" }
 , "licenses":
   [ { "type": "Unlicense"
