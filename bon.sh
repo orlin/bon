@@ -69,6 +69,14 @@ IFS=':' read -ra node_paths <<< "${NODE_PATH_TEST}"
 for path_test in "${node_paths[@]}"; do
   if [[ -d "${path_test}/${name}" ]]; then
     path="${path_test}/${name}"
+    if [[ -n "${BON_PRE_PATH}" ]]; then
+      if [[ "$BON_PRE_PATH" == "." ]]; then
+        BON_PRE_PATH="$path"
+      else
+        BON_PRE_PATH="${path}/${BON_PRE_PATH}"
+      fi
+      PATH="${BON_PRE_PATH}:${PATH}"
+    fi
     [[ "$BON_CWD" == "." ]] && BON_CWD="$(pwd)"
     cd "$path"
     break
