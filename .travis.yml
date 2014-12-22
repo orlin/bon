@@ -3,7 +3,6 @@ branches:
   only:
     - test
     - active
-    - master
 install:
   - npm install
   - npm run preptest
