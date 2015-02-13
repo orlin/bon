@@ -21,8 +21,9 @@
 , "scripts":
   { "install": "node_modules/.bin/install-g || true"
   , "preptest": "./preptest.sh"
-  , "test": "node_modules/.bin/batshit -t test" }
-, "engines" : { "node" : "*" }
+  , "test": "batshit -t test" }
+, "os" : [ "!win32" ]
+, "engines" : { "node": "0.10.x || 0.12.x || 1.x.x" }
 , "licenses":
   [ { "type": "Unlicense"
     , "url" : "http://unlicense.org"

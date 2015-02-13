@@ -1,4 +1,6 @@
 language: node_js
+node_js:
+  - 0.12
 branches:
   only:
     - test
@@ -6,7 +8,6 @@ branches:
     - master
 install:
   - npm install
-  - npm i -g batshit
   - npm run preptest
 notifications:
   email:
