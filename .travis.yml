@@ -1,8 +1,11 @@
 language: node_js
+node_js:
+  - 0.12
 branches:
   only:
     - test
     - active
+    - master
 install:
   - npm install
   - npm run preptest
