@@ -24,7 +24,7 @@ The above reasons came from hacking this [`daps`](https://github.com/orlin/daps)
 use case. Time went on, and `bon` proved useful for packaging other programs:
 
 * [datomic-free](https://github.com/datomicon/datomic-free)
-* [bats](https://github.com/orlin/batshit)
+* [batshit](https://github.com/orlin/batshit)
 * etc.
 
 Here're the [npm dependents](https://www.npmjs.com/browse/depended/bon) so far.
