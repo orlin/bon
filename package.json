@@ -25,7 +25,7 @@
   , "preptest": "./preptest.sh"
   , "test": "batshit -t test" }
 , "os" : [ "!win32" ]
-, "engines" : { "node": "0.10.x || 0.12.x" }
+, "engines" : { "node": ">= 0.10.0" }
 , "licenses":
   [ { "type": "Unlicense"
     , "url" : "http://unlicense.org"
